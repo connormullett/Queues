@@ -21,6 +21,7 @@ Queue* enqueue(Queue* queue, int data);
 struct Node* peek(Queue* queue);
 struct Node* dequeue(Queue* queue);
 void printQueue(Queue* queue);
+void deleteQueue(Queue* queue);
 
 
 int main(){
@@ -46,6 +47,7 @@ int main(){
 
 struct Node* createNode(int data, struct Node* next);
 void printNode(struct Node* node);
+struct Node* deleteNode(struct Node* node);
 
 
 // Queue Functions
@@ -96,6 +98,14 @@ struct Node* dequeue(Queue* queue){
     return popNode;
 }
 
+void deleteQueue(Queue* queue){
+    while(!queue->head){
+        queue->head = deleteNode(queue->head);
+    }
+
+    /* free(queue); */
+}
+
 
 // Node Functions
 struct Node* createNode(int data, struct Node* next){
@@ -110,5 +120,9 @@ void printNode(struct Node* node){
     if(node->next){
         printNode(node->next);
     }
+}
+
+struct Node* deleteNode(struct Node* node){
+    return NULL;
 }
 
