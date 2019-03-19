@@ -29,8 +29,17 @@ int main(){
     enqueue(queue, 10);
     enqueue(queue, 20);
 
-    struct Node* head = peek(queue);
     printQueue(queue);
+    printf("size :: %d\n", queue->size);
+
+    struct Node* first = dequeue(queue);
+    printf("dequeued node :: %d\n", first->data);
+
+    struct Node* head = peek(queue);
+    printf("peeked node :: %d\n", head->data);
+
+    printf("size :: %d\n", queue->size);
+
     return 0;
 }
 
@@ -73,6 +82,18 @@ void printQueue(Queue* queue){
 
 struct Node* peek(Queue* queue){
     return queue->head;
+}
+
+struct Node* dequeue(Queue* queue){
+    if(!queue){
+        return NULL;
+    }
+    struct Node* popNode = queue->head;
+
+    queue->head = popNode->next;
+    popNode->next = NULL;
+    --queue->size;
+    return popNode;
 }
 
 
